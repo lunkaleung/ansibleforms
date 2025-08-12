@@ -13,8 +13,9 @@ WORKDIR /app
 RUN wget -O /bin/ytt github.com/vmware-tanzu/carvel-ytt/releases/download/v0.49.0/ytt-linux-amd64
 RUN chmod -R +x /bin/ytt
 
-# isntall apk packages
+# install apk packages
 RUN apk add py3-pip py3-pyldap libxslt mysql-client curl tzdata mariadb-connector-c openssh sshpass git vim
+RUN apk add libxml2-dev libxslt-dev curl-dev build-base python3-dev
 
 # install some dev packages
 # RUN apk add --update --no-cache --virtual .build-deps g++ gcc libxml2-dev libxslt-dev unixodbc-dev python3-dev postgresql-dev && apk del .build-deps
@@ -22,6 +23,7 @@ RUN apk add py3-pip py3-pyldap libxslt mysql-client curl tzdata mariadb-connecto
 
 # install pip3 packages
 RUN pip3 install pandas PyYAML openpyxl hvac pyVim pyvmomi jinja2 requests six PyMySQL netapp_lib netapp_ontap solidfire-sdk-python boto3 boto botocore lxml ansible
+RUN pip3 install ovirt-engine-sdk-python --break-system-packages
 
 # run ansible galaxy modules
 RUN ansible-galaxy collection install netapp.ontap -p /usr/share/ansible/collections
