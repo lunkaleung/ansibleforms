@@ -9,6 +9,10 @@ FROM node AS nodebase
 # Use /app as CWD
 WORKDIR /app
 
+# set timezone
+RUN apk add --no-cache tzdata
+ENV TZ="Asia/Hong_Kong"
+
 # Install github package
 RUN wget -O /bin/ytt github.com/vmware-tanzu/carvel-ytt/releases/download/v0.49.0/ytt-linux-amd64
 RUN chmod -R +x /bin/ytt
