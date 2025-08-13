@@ -12,6 +12,7 @@ WORKDIR /app
 # set timezone
 RUN apk add --no-cache tzdata
 ENV TZ="Asia/Hong_Kong"
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install github package
 RUN wget -O /bin/ytt github.com/vmware-tanzu/carvel-ytt/releases/download/v0.49.0/ytt-linux-amd64
