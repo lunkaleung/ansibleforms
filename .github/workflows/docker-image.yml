@@ -9,9 +9,7 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
@@ -27,3 +25,22 @@ jobs:
         context: .
         push: true
         tags: davidlun/ansibleforms:latest
+  
+  push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag testimage --label "runnumber=${GITHUB_RUN_ID}"
+      - name: Log in to registry
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ghcr.io -u lunkaleung --password-stdin
+      - name: Push image
+        run: |
+          IMAGE_ID=ghcr.io/lunkaleung/testimage
+          VERSION=latest
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
