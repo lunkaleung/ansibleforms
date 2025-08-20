@@ -34,13 +34,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      # - name: Build the Docker image
-      #   run: docker build . --file Dockerfile --tag testimage --label "runnumber=${GITHUB_RUN_ID}"
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag testimage --label "runnumber=${GITHUB_RUN_ID}"
       - name: Log in to registry
         run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u lunkaleung --password-stdin
-      # - name: Push image
-      #   run: |
-      #     IMAGE_ID=ghcr.io/lunkaleung/testimage
-      #     VERSION=latest
-      #     docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-      #     docker push $IMAGE_ID:$VERSION
+      - name: Push image
+        run: |
+          IMAGE_ID=ghcr.io/lunkaleung/testimage
+          VERSION=latest
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
