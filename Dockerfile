@@ -10,6 +10,8 @@ RUN apk add --no-cache sudo
 RUN adduser -D -s /bin/bash appuser
 RUN echo "appuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+USER appuser
+
 # Use /app as CWD
 WORKDIR /app
 
