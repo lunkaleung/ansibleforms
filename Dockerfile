@@ -6,9 +6,9 @@ FROM node:16-alpine AS node
 
 FROM node AS nodebase
 
-RUN apk add --no-cache sudo
+#RUN apk add --no-cache sudo
 #RUN adduser -D -s /bin/bash appuser
-RUN echo "1001100000 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+#RUN echo "1001100000 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Use /app as CWD
 WORKDIR /app
@@ -45,7 +45,7 @@ RUN ansible-galaxy collection install community.mysql -p /usr/share/ansible/coll
 RUN ansible-galaxy collection install ansibleguy76.ansibleforms -p /usr/share/ansible/collections
 
 # make ssh directory
-RUN mkdir -p ~/.ssh
+#RUN mkdir -p ~/.ssh
 
 # update npm
 RUN npm install -g npm@9.8.1
