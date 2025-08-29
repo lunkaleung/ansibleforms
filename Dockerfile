@@ -41,6 +41,8 @@ RUN ansible-galaxy collection install community.general -p /usr/share/ansible/co
 RUN ansible-galaxy collection install community.mysql -p /usr/share/ansible/collections
 RUN ansible-galaxy collection install ansibleguy76.ansibleforms -p /usr/share/ansible/collections
 
+USER 1001190000
+
 # make ssh directory
 RUN mkdir -p ~/.ssh
 
