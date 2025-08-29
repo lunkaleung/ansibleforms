@@ -44,7 +44,7 @@ RUN ansible-galaxy collection install ansibleguy76.ansibleforms -p /usr/share/an
 USER 1001190000
 
 # make ssh directory
-RUN mkdir -p ~/.ssh
+RUN mkdir -p /app/.ssh
 
 # update npm
 RUN npm install -g npm@9.8.1
