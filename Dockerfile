@@ -10,8 +10,6 @@ RUN apk add --no-cache sudo
 RUN adduser -D -s /bin/bash appuser
 RUN echo "appuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-USER appuser
-
 # Use /app as CWD
 WORKDIR /app
 
@@ -128,6 +126,6 @@ COPY --from=tmp_builder /app/server/dist ./dist
 
 # Copy the ansible.cfg file to /etc/ansible/ directory
 COPY ./server/ansible.cfg /etc/ansible/ansible.cfg
-
+USER appuser
 # Use js files to run the application
 ENTRYPOINT ["node", "./dist/index.js"]
