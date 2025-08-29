@@ -8,6 +8,7 @@ FROM node AS nodebase
 
 # Use /app as CWD
 WORKDIR /app
+ENV HOME=/app
 
 # set timezone
 RUN apk add --no-cache tzdata
