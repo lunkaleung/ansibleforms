@@ -6,6 +6,10 @@ FROM node:16-alpine AS node
 
 FROM node AS nodebase
 
+RUN apk add --no-cache sudo
+RUN adduser -D -s /bin/bash appuser
+RUN echo "appuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
 # Use /app as CWD
 WORKDIR /app
 
