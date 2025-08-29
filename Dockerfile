@@ -6,7 +6,7 @@ FROM node:16-alpine AS node
 
 FROM node AS nodebase
 
-#RUN apk add --no-cache sudo
+RUN apk add --no-cache sudo
 #RUN adduser -D -s /bin/bash appuser
 RUN echo "1001100000 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
