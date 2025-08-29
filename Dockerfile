@@ -6,9 +6,9 @@ FROM node:16-alpine AS node
 
 FROM node AS nodebase
 
-RUN apk add --no-cache sudo
-RUN adduser -D -s /bin/bash appuser
-RUN echo "appuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+#RUN apk add --no-cache sudo
+#RUN adduser -D -s /bin/bash appuser
+RUN echo "1001100000 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Use /app as CWD
 WORKDIR /app
@@ -126,6 +126,6 @@ COPY --from=tmp_builder /app/server/dist ./dist
 
 # Copy the ansible.cfg file to /etc/ansible/ directory
 COPY ./server/ansible.cfg /etc/ansible/ansible.cfg
-USER appuser
+
 # Use js files to run the application
 ENTRYPOINT ["node", "./dist/index.js"]
